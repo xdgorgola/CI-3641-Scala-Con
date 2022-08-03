@@ -8,7 +8,9 @@ import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Future}
 
 
-/** Producto punto de dos arreglos usando Futures
+/**
+ * Producto punto de dos arreglos usando Futures por cada
+ * multiplicacion y una variable atomica
  *
  * @param v1 Arreglo 1
  * @param v2 Arreglo 2
@@ -26,6 +28,21 @@ def dotProductFutures(v1: Array[Int], v2: Array[Int]): Int=
   res.intValue()
 
 
+/** Producto punto cuyo calculo entero es un Future
+ *
+ * @param v1 Arreglo 1
+ * @param v2 Arreglo 2
+ * @return Future con el producto punto
+ */
+def dotProductAllFuture(v1: Array[Int], v2: Array[Int]): Future[Int]=
+
+  Future[Int] {
+    var res = 0
+    for i <- v1.indices do res += v1(i) * v2(i)
+    res
+  }
+
+
 /**
  * Producto punto entre dos arreglos usando parallel collections
  *
@@ -36,6 +53,3 @@ def dotProductFutures(v1: Array[Int], v2: Array[Int]): Int=
  */
 def dotProductParallel(v1: Array[Int], v2: Array[Int]): Int =
     ParArray[Int](v1.indices: _*).map(i => v1(i) * v2(i)).sum
-
-
-
