@@ -4,8 +4,9 @@ para realizar el producto punto, y contar la cantidad de archivos que hay en un
 directorio y sus subdirectorios.
 
 Para el producto punto, se utilizan las siguientes implementaciones:
-- Futures con variables atómicas.
-- Colecciones paralelas
+- Futures para cada componente con variables atómicas.
+- Un solo Future para todo el cálculo.
+- Colecciones paralelas.
 
 Y para el conteo de archivos simplemente se utilizan los threads de Java.
 
